@@ -10,6 +10,10 @@ def lis(arr):
             i+=1
         t[j]+=1
         j+=1
+    # print(t)
+    t.remove(max(t))
+    print(t.count(max(t)))
+    # print(t)
     return max(t)
     # return t
-print(lis([5,4,3,2,1]))
+print(lis([1,3,5,4,7]))
