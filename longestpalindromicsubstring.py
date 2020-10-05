@@ -1,20 +1,23 @@
+class s:
+    def longestPalindrome(self, s):
+        res = ""
+        for i in range(len(s)):
+            # odd case, like "aba"
+            tmp = self.helper(s, i, i)
+            if len(tmp) > len(res):
+                res = tmp
+            # even case, like "abba"
+            tmp = self.helper(s, i, i+1)
+            if len(tmp) > len(res):
+                res = tmp
+        return res
+    
+    # get the longest palindrome, l, r are the middle indexes   
+    # from inner to outer
+    def helper(self, s, l, r):
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1; r += 1
+        return s[l+1:r]
 
-reslen=float("-infinity")
-resstart = None
-def asd(s='aaababaaa'):
-    if len(s)<2:
-        return s
-    for i in range(len(s)-1):
-        expand(s,i,i)
-        expand(s,i,i+1)
-    return s[resstart:resstart+reslen]
-
-def expand(string,begin,end):
-    while begin>=0 and end<len(string) and string[begin]==string[end]:
-        begin-=1
-        end+=1
-        global reslen,resstart
-    if (reslen < end-begin-1):
-        resstart = begin+1
-        reslen=end-begin-1
-print(asd())
+S = s()
+print(S.longestPalindrome('babad'))
